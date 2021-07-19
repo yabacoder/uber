@@ -1,10 +1,10 @@
 import React from 'react';
-import {View, Text, Image, StyleSheet} from 'react-native';
+import {View, Text, Image, Pressable} from 'react-native';
 import styles from './styles';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const UberTypeRow = props => {
-  const {type} = props;
+  const {type, onPress, isSelected} = props;
 
   const getImage = () => {
     if (type.type === 'UberX') {
@@ -18,7 +18,12 @@ const UberTypeRow = props => {
   };
 
   return (
-    <View style={styles.container}>
+    <Pressable
+      onPress={onPress}
+      style={[
+        styles.container,
+        {backgroundColor: isSelected ? '#efefef' : 'white'},
+      ]}>
       {/* { image } */}
       <Image style={styles.image} source={getImage()} />
       <View style={styles.middleContainer}>
@@ -31,7 +36,7 @@ const UberTypeRow = props => {
         <Ionicons name={'pricetag'} size={18} color={'#42D742'} />
         <Text style={styles.price}>est. ${type.price}</Text>
       </View>
-    </View>
+    </Pressable>
   );
 };
 
