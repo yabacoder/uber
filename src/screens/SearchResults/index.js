@@ -43,12 +43,7 @@ const SearchResults = props => {
         }),
       );
       console.log(response);
-      Alert.alert('Hurry', 'Your order has been submitted', [
-        {
-          text: 'Go home',
-          onPress: () => navigation.navigate('Home'),
-        },
-      ]);
+      navigation.navigate('OrderScreen', {id: response.data.createOrder.id});
     } catch (e) {
       console.error(e);
     }
